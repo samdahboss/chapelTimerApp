@@ -40,31 +40,39 @@ class sessionCard{
         cancelBtn.addEventListener('click',function(){
             cancelBtn.parentElement.remove()
         })
-        // cardDiv.addEventListener('click',this.displayTime())
+        cardDiv.addEventListener('click',()=>{
+            this.displayTime()
+        })
         sessionTitle.innerText=this.sessionName;
-        sessionTime.innerText=this.noOfMinutes+"min"
+        sessionTime.innerText=this.noOfHours?(this.noOfHours+" H:"+ ((this.noOfMinutes?(this.noOfMinutes+" M:"+(this.noOfSeconds?this.noOfSeconds:"0")+" S"):(this.noOfSeconds+" S")))):
+                            (this.noOfMinutes?(this.noOfMinutes+" M:"+(this.noOfSeconds?this.noOfSeconds:"0")+" S"):(this.noOfSeconds+" S"))
         cardDiv.append(sessionTitle,sessionTime,cancelBtn)
         sessionRow.append(cardDiv)
     }
     displayTime(){
         sessionNameDisplay.innerText=this.sessionName;
-        countdownDisplay.innerText=this.noOfHours+"H"+this.noOfMinutes+"M"+this.noOfSeconds+"S"
+        countdownDisplay.innerText=(this.noOfHours.length>1?(this.noOfHours):this.noOfHours.length==1?("0"+this.noOfHours):"00")+"H:"
+                                   +(this.noOfMinutes.length>1?(this.noOfMinutes):this.noOfMinutes.length==1?("0"+this.noOfMinutes):"00")+"M:"
+                                   +(this.noOfSeconds.length>1?(this.noOfSeconds):this.noOfSeconds.length==1?("0"+this.noOfSeconds):"00")+"S"
     }
 
 }
+
 document.getElementById('setSession').addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
     let newSessionHour=hourInput.value;
     let newSessionMinutes=minutesInput.value;
     let newSessionSeconds=secondsInput.value;
-    if(newSessionName && newSessionMinutes){
+    if(newSessionName){
         let newSession=new sessionCard(newSessionName,newSessionHour,newSessionMinutes,newSessionSeconds);
         newSession.draw()
     }else{
-        window.alert('Please enter a session name and time')
+        window.alert('Please enter a Session Name')
     }
     sessionNameInput.value=""
+    hourInput.value=""
     minutesInput.value=""
+    secondsInput.value=""
 })
 let titleWidth=title.style.width;
 document.addEventListener('scroll',function(){
