@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Timer</title>
+</head>
+<body id="body">
+    <div class="container">
+        <div id="title">
+            <img src="logo.png" alt="" srcset="">
+            <h1>MTU CHAPEL TIMER</h1>
+        </div>
+        <button id="display">Display</button>
+        <section  class="row">
+            <div class="cards" id="sessionRow">
+                <div class="card">
+                    <h2>Praise and Worship</h2>
+                    <h3>10min</h3>
+                    <span class="cancel">X</span>
+                </div>
+                <!-- <div class="card">
+                    <h2>HolyGhost Session</h2>
+                    <h3>10min</h3>
+                    <span class="cancel">x</span>
+                </div>
+                <div class="card">
+                    <h2>Special Ministration</h2>
+                    <h3>3min</h3>
+                    <span class="cancel">x</span>
+                </div>
+                <div class="card">
+                    <h2>Bible Reading</h2>
+                    <h3>5min</h3>
+                    <span class="cancel">x</span>
+                </div> -->
+            </div>
+            <div class="card addsession">
+                <button id="addSessionBtn">+</button>
+            </div>
+        </section>
+        <section class="row timedisplay">
+            <h1>Time Left: <span id="countdown"></span></h1>
+        </section>
+        <section class="row control-table">
+            <div class="notes">
+                <h1>NOTES</h1>
+                <textarea name="" id="notes" cols="30" rows="10"></textarea>
+                <button id="saveNotesBtn" class="controlBtn">
+                    SAVE NOTES
+                </button>
+            </div>
+            <div class="setTime" id="setTimerSection">
+                <h1>TIME</h1>
+                <form action="" id="setTimeTable">
+                    <label for="sessionName">
+                        SESSION NAME:
+                        <input type="text" name="sessionName" id="sessionName" class="sessionName">
+                    </label>
+                    <label for="hour">
+                        HOUR:
+                        <input type="number" name="hour" placeholder="Hours" id="hour">
+                    </label>
+                    <label for="minutes">
+                        MINUTES:
+                        <input type="number" name="minutes" placeholder="Minutes" id="minutes">
+                    </label>
+                    <label for="seconds">
+                        SECONDS:
+                        <input type="number" name="seconds" placeholder="Seconds" id="seconds">
+                    </label>
+                </form>
+            </div>
+            <div class="controlBtns">
+                <h1>CONTROLS</h1>
+                <button class="controlBtn" id="setSession">SET SESSION</button>
+                <button class="controlBtn" id="start">START</button>
+                <button class="controlBtn" id="pause">PAUSE</button>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

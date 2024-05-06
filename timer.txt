@@ -1,0 +1,10 @@
+IMPROVEMENTS TO MTU CHAPEL TIMER
+1. Operators should be able to set multiple time frames ready e.g. {testimony: 10min, bible reading: 5min,etc..}
+	when next is clicked i.e (after the previous event) the time for the next section should be displayed (with the title indicating the name
+	of the specific section i.e Title: HolyGhost Section, Time: 10:00min
+2. The time control section should not be visible on the projector screen but only on the operators screen
+3. The time's up indicator should be clear and should stay until the next button is clicked
+4. The time should always have the format 00h:00m:00s
+
+Non-functional requirements
+1. Control btns: Start time, Stop time, Pause time, Set time, Next section, Display ON/OFF
