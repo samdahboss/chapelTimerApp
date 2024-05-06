@@ -61,7 +61,7 @@ section.row{
 section.row .cards{
     position: relative;
     height: fit-content;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     padding: 0.5em;
@@ -111,7 +111,7 @@ section.row .cards .card{
 .card h3{
     font-size: 1.2em;
 }
-.addsession{
+/* .addsession{
     margin-left: 0.5em;
     margin-top: auto;
     margin-bottom: auto;
@@ -120,18 +120,24 @@ section.row .cards .card{
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
                 rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
-}
-#addSessionBtn{
+} */
+/* #addSessionBtn{
     font-size: 4em;
     font-weight: bold;
     background-color: transparent;
     border: 0;
     width: 100%;
     height: 100%;
-}
+} */
 /*TIME DISPLAY*/
 section.row.timedisplay{
     padding: 0em 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#countdownDisplay,#sessionNameDisplay{
+    font-size: 1em;
 }
 /*CONTROL TABLE*/
 section.row.control-table{
@@ -211,9 +217,9 @@ section.row.control-table{
         overflow-x: unset;
         margin: auto;
     }
-    .addsession{
+    /* .addsession{
         display: none;
-    }
+    } */
     .card{
         width: 100%;
     }
@@ -229,9 +235,9 @@ section.row.control-table{
         width: 100%;
         margin-bottom: 1em;
     }
-    .addsession{
+    /* .addsession{
         display: none;
-    }
+    } */
     section.row.control-table{
         display: flex;
         flex-direction: column;

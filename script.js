@@ -8,24 +8,26 @@ let saveNotesBtn= document.getElementById('saveNotesBtn')
 let sessionNameInput=document.getElementById('sessionName')
 let hourInput=document.getElementById('hour')
 let minutesInput=document.getElementById('minutes')
-let secondsInput=document.getElementById('hour')
+let secondsInput=document.getElementById('seconds')
+
+/*timerDisplay*/
+let sessionNameDisplay=document.getElementById('sessionNameDisplay')
+let countdownDisplay=document.getElementById('countdownDisplay')
 
 /*session row*/
 let sessionRow= document.getElementById('sessionRow')
-let sessionCards=document.getElementsByClassName('card')
 let addSessionBtn= document.getElementById('addSessionBtn')
 
-let cancel=document.querySelector('.cancel')
 
-cancel.addEventListener('click',function(){
-    console.log('lol')
-})
+
 let session={}
 
 class sessionCard{
-    constructor(sessionName, noOfMinutes){
+    constructor(sessionName,  noOfHours,noOfMinutes,noOfSeconds){
         this.sessionName=sessionName;
         this.noOfMinutes=noOfMinutes;
+        this.noOfHours=noOfHours;
+        this.noOfSeconds=noOfSeconds;
     }
     draw(){
         let cardDiv=document.createElement('div')
@@ -35,17 +37,28 @@ class sessionCard{
         let cancelBtn=document.createElement('span')
         cancelBtn.innerText="X"
         cancelBtn.className="cancel"
+        cancelBtn.addEventListener('click',function(){
+            cancelBtn.parentElement.remove()
+        })
+        // cardDiv.addEventListener('click',this.displayTime())
         sessionTitle.innerText=this.sessionName;
         sessionTime.innerText=this.noOfMinutes+"min"
         cardDiv.append(sessionTitle,sessionTime,cancelBtn)
         sessionRow.append(cardDiv)
     }
+    displayTime(){
+        sessionNameDisplay.innerText=this.sessionName;
+        countdownDisplay.innerText=this.noOfHours+"H"+this.noOfMinutes+"M"+this.noOfSeconds+"S"
+    }
+
 }
-addSessionBtn.addEventListener('click',function(){
+document.getElementById('setSession').addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
-    let newSessionTime=minutesInput.value;
-    if(newSessionName && newSessionTime){
-        let newSession=new sessionCard(newSessionName,newSessionTime);
+    let newSessionHour=hourInput.value;
+    let newSessionMinutes=minutesInput.value;
+    let newSessionSeconds=secondsInput.value;
+    if(newSessionName && newSessionMinutes){
+        let newSession=new sessionCard(newSessionName,newSessionHour,newSessionMinutes,newSessionSeconds);
         newSession.draw()
     }else{
         window.alert('Please enter a session name and time')
