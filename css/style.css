@@ -212,6 +212,9 @@ section.row.control-table{
 }
 
 @media (max-width: 768px){
+    #title{
+        font-size: 0.8em;
+    }
     section.row .cards{
         display: flex;
         flex-direction: column;
