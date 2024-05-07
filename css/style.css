@@ -7,6 +7,9 @@
     font-family: 'Bauhaus 93',cursive;
     transition: 0.3s;
 }
+:root{
+    --main-color: #A7EC72;
+}
 body{
     width: 100vw;
     height: 100vh;
@@ -18,6 +21,9 @@ body{
     padding-right: 10rem;
     margin: 0 auto;
 }
+#presenterTimerDisplay{
+    background-color: var(--main-color);
+}
 /*HEADER*/
 h1{
     text-align: center;
@@ -28,13 +34,13 @@ h1{
     margin-left: auto;
     margin-top: 1em;
     padding: 1em;
-    background-color: bisque;
+    background-color: var(--main-color);
     border: 0;
     border-radius: 10px;
     transition: 0.2s;
 }
 #title{
-    border-bottom: 3px solid bisque;
+    border-bottom: 3px solid var(--main-color);
     width: 40%;
     display: flex;
     flex-direction: row;
@@ -89,7 +95,7 @@ section.row .cards .card{
     background-color: rgba(0, 0, 0, 0.438);
 }
 .card{
-    background-color: bisque;
+    background-color: var(--main-color);
     height: 150px;
     width: 20%;
     padding: 1em;
@@ -131,12 +137,12 @@ section.row.control-table{
 .control-table div{
     border-top: none;
     border-radius: 10px;
-    border: 3px solid bisque;
+    border: 3px solid var(--main-color);
     width: 33.33%;
     margin: 0 auto;
 }
 .control-table div h1{
-    background-color: bisque;
+    background-color: var(--main-color);
 }
 .notes textarea{
     outline:0;
@@ -158,11 +164,11 @@ section.row.control-table{
     width: 100%;
 }
 #setTimeTable input{
-    border: 2px solid bisque;
+    border: 2px solid var(--main-color);
     outline: none;
 }
 .controlBtn{
-    background-color: bisque;
+    background-color: var(--main-color);
     display: block;
     margin: auto;
     border: 0;
