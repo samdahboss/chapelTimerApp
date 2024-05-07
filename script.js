@@ -49,6 +49,7 @@ class sessionCard{
     }
     displayTime(){
         sessionNameDisplay.innerText=this.sessionName;
+        countdownDisplay.style.color="black";
         countdownDisplay.innerText=(this.noOfHours.length>1?(this.noOfHours):this.noOfHours.length==1?("0"+this.noOfHours):"00")+"H:"
                                    +(this.noOfMinutes.length>1?(this.noOfMinutes):this.noOfMinutes.length==1?("0"+this.noOfMinutes):"00")+"M:"
                                    +(this.noOfSeconds.length>1?(this.noOfSeconds):this.noOfSeconds.length==1?("0"+this.noOfSeconds):"00")+"S"
@@ -57,7 +58,11 @@ class sessionCard{
 }
 
 /*TIMER CONTROL FUNCTION*/
+let countDownBoolean;
+let timer;
+/*START TIMER FUNCTION*/
 document.getElementById('start').addEventListener('click',()=>{
+    countDownBoolean=true;
     let startTime=new Date()
     /*GETTING THE HOUR, MINUTES AND SECOND AT THE TIME START IS CLICKED*/
     let startTimeArray=[startTime.getHours(),
@@ -70,14 +75,16 @@ document.getElementById('start').addEventListener('click',()=>{
                     ]
     /*Calculating the endTime by adding the time set by the user to the current time*/
     let endTimeArray=[startTimeArray[0]+countDownTime[0],
-                 startTimeArray[1]+countDownTime[1],
-                 startTimeArray[2]+countDownTime[2]]
+                      startTimeArray[1]+countDownTime[1],
+                      startTimeArray[2]+countDownTime[2]]
     let endTime=new Date()
     endTime.setHours(endTimeArray[0])
     endTime.setMinutes(endTimeArray[1])
     endTime.setSeconds(endTimeArray[2])
+                    
     
-    let timer=setInterval(function(){
+    if(countDownBoolean){
+    timer=setInterval(function(){
         let currentTime=new Date()
 
         let timeLeft=1000+(endTime-currentTime);
@@ -90,12 +97,20 @@ document.getElementById('start').addEventListener('click',()=>{
             countdownDisplay.style.color="red"
             countdownDisplay.innerText="TIME IS UP"
         }else{
-            countdownDisplay.style.color="black"
             countdownDisplay.innerText=(hours <10 ? ("0"+hours):hours)+"H:"+(minutes <10 ? ("0"+minutes):minutes)+"M:"+(seconds <10 ? ("0"+seconds):seconds)+"S"
         }
-    },1000)
+    },1000)}
 })
-
+/*PAUSE TIMER FUNCTION*/
+document.getElementById('pause').addEventListener('click',function(){
+    countDownBoolean=false;
+    clearInterval(timer)
+})
+/*RESET TIMER FUNCTION*/
+document.getElementById('reset').addEventListener('click',function(){
+    clearInterval(timer)
+    countdownDisplay.innerText="00H:00M:00S"
+})
 document.getElementById('setSession').addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
     let newSessionHour=hourInput.value;
