@@ -113,6 +113,7 @@ pause.addEventListener('click',function(){
 /*RESET TIMER FUNCTION*/
 reset.addEventListener('click',function(){
     clearInterval(timer)
+    sessionNameDisplay.innerText=""
     countdownDisplay.innerText="00H:00M:00S"
 })
 setSession.addEventListener('click',function(){
