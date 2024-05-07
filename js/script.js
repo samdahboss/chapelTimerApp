@@ -12,8 +12,7 @@ let secondsInput=document.getElementById('seconds')
 
 /*timerDisplay*/
 let sessionNameDisplay=document.getElementById('sessionNameDisplay')
-export let countdownDisplay=document.getElementById('countdownDisplay')
-
+let countdownDisplay=document.getElementById('countdownDisplay')
 /*session row*/
 let sessionRow= document.getElementById('sessionRow')
 
@@ -57,13 +56,15 @@ class sessionCard{
         countdownDisplay.innerText=(this.noOfHours.length>1?(this.noOfHours):this.noOfHours.length==1?("0"+this.noOfHours):"00")+"H:"
                                    +(this.noOfMinutes.length>1?(this.noOfMinutes):this.noOfMinutes.length==1?("0"+this.noOfMinutes):"00")+"M:"
                                    +(this.noOfSeconds.length>1?(this.noOfSeconds):this.noOfSeconds.length==1?("0"+this.noOfSeconds):"00")+"S"
+        localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
+        localStorage.setItem("sessionNameContent",sessionNameDisplay.innerText)
     }
 
 }
 
 /*TIMER CONTROL FUNCTION*/
-export let countDownBoolean;
-export let timer;
+let countDownBoolean;
+let timer;
 /*START TIMER FUNCTION*/
 start.addEventListener('click',function(){
     countDownBoolean=true;
@@ -100,8 +101,10 @@ start.addEventListener('click',function(){
             clearInterval(timer);
             countdownDisplay.style.color="red"
             countdownDisplay.innerText="TIME IS UP"
+            localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
         }else{
             countdownDisplay.innerText=(hours <10 ? ("0"+hours):hours)+"H:"+(minutes <10 ? ("0"+minutes):minutes)+"M:"+(seconds <10 ? ("0"+seconds):seconds)+"S"
+            localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
         }
     },1000)}
 })
@@ -115,6 +118,7 @@ reset.addEventListener('click',function(){
     clearInterval(timer)
     sessionNameDisplay.innerText=""
     countdownDisplay.innerText="00H:00M:00S"
+    localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
 })
 setSession.addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
