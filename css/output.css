@@ -1,10 +1,30 @@
 #presenterTimerDisplay{
     background-color: bisque;
     border: 3px solid black;
-    margin-top: 20%;
     width: 100%;
     padding: 5em;
+    border-radius: 10px;
 }
-#presenterSessionNameDisplay,#presenterCountdownDisplay{
-    font-size: 1em;
+section.output-row{
+    flex-direction: column;
+    padding-top: 10%;
+}
+#presenterSessionNameDisplay{
+    text-align: center;
+    font-size: 2em;
+}
+#presenterCountdownDisplay{
+    font-size: 3em;
+}
+
+@media(max-width: 992px){
+    section.output-row{
+        padding-top: 20%;
+    }
+    #presenterSessionNameDisplay{
+        font-size: 1.5em;
+    }
+    #presenterCountdownDisplay{
+        font-size: 2em;
+    }
 }

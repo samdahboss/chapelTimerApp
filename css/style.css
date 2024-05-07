@@ -5,6 +5,7 @@
     margin: 0;
     font-size: 16px;
     font-family: 'Bauhaus 93',cursive;
+    transition: 0.3s;
 }
 body{
     width: 100vw;
@@ -34,13 +35,14 @@ h1{
 }
 #title{
     border-bottom: 3px solid bisque;
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: row;
     position: fixed;
     top: 0;
     z-index: 1000;
     background-color: white;
+    transition: 0.5s;
 }
 #title img{
     display: inline;
