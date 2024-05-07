@@ -12,14 +12,18 @@ let secondsInput=document.getElementById('seconds')
 
 /*timerDisplay*/
 let sessionNameDisplay=document.getElementById('sessionNameDisplay')
-let countdownDisplay=document.getElementById('countdownDisplay')
+export let countdownDisplay=document.getElementById('countdownDisplay')
 
 /*session row*/
 let sessionRow= document.getElementById('sessionRow')
-let addSessionBtn= document.getElementById('addSessionBtn')
 
+/*control btn*/
+ const start=document.getElementById('start')
+ const pause =document.getElementById('pause')
+ const reset=document.getElementById('reset')
+ const setSession=document.getElementById('setSession')
 
-
+ /*session card object*/
 class sessionCard{
     constructor(sessionName,  noOfHours,noOfMinutes,noOfSeconds){
         this.sessionName=sessionName;
@@ -58,10 +62,10 @@ class sessionCard{
 }
 
 /*TIMER CONTROL FUNCTION*/
-let countDownBoolean;
-let timer;
+export let countDownBoolean;
+export let timer;
 /*START TIMER FUNCTION*/
-document.getElementById('start').addEventListener('click',()=>{
+start.addEventListener('click',function(){
     countDownBoolean=true;
     let startTime=new Date()
     /*GETTING THE HOUR, MINUTES AND SECOND AT THE TIME START IS CLICKED*/
@@ -102,16 +106,16 @@ document.getElementById('start').addEventListener('click',()=>{
     },1000)}
 })
 /*PAUSE TIMER FUNCTION*/
-document.getElementById('pause').addEventListener('click',function(){
+pause.addEventListener('click',function(){
     countDownBoolean=false;
     clearInterval(timer)
 })
 /*RESET TIMER FUNCTION*/
-document.getElementById('reset').addEventListener('click',function(){
+reset.addEventListener('click',function(){
     clearInterval(timer)
     countdownDisplay.innerText="00H:00M:00S"
 })
-document.getElementById('setSession').addEventListener('click',function(){
+setSession.addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
     let newSessionHour=hourInput.value;
     let newSessionMinutes=minutesInput.value;
@@ -141,7 +145,7 @@ document.addEventListener('scroll',function(){
 
 /*FUNCTION FOR DISPLAYING OUTPUT IN A NEW SCREEN*/
 displayBtn.addEventListener('click',function(){
-    window.open()
+    window.open("output.html","_blank")
 })
 
 /*FUNCTION FOR SAVING NOTES ITEM*/
