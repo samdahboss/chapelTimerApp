@@ -20,8 +20,6 @@ let addSessionBtn= document.getElementById('addSessionBtn')
 
 
 
-let session={}
-
 class sessionCard{
     constructor(sessionName,  noOfHours,noOfMinutes,noOfSeconds){
         this.sessionName=sessionName;
@@ -58,6 +56,46 @@ class sessionCard{
 
 }
 
+/*TIMER CONTROL FUNCTION*/
+document.getElementById('start').addEventListener('click',()=>{
+    let startTime=new Date()
+    /*GETTING THE HOUR, MINUTES AND SECOND AT THE TIME START IS CLICKED*/
+    let startTimeArray=[startTime.getHours(),
+                        startTime.getMinutes(),
+                        startTime.getSeconds()]
+    /*GETTING THE COUNTDOWN TIME SET BY THE USER FROM THE countDownDisplay div*/
+    let countDownTime=[parseInt(countdownDisplay.innerText.slice(0,2)),
+                       parseInt(countdownDisplay.innerText.slice(4,6)),
+                       parseInt(countdownDisplay.innerText.slice(8,10))
+                    ]
+    /*Calculating the endTime by adding the time set by the user to the current time*/
+    let endTimeArray=[startTimeArray[0]+countDownTime[0],
+                 startTimeArray[1]+countDownTime[1],
+                 startTimeArray[2]+countDownTime[2]]
+    let endTime=new Date()
+    endTime.setHours(endTimeArray[0])
+    endTime.setMinutes(endTimeArray[1])
+    endTime.setSeconds(endTimeArray[2])
+    
+    let timer=setInterval(function(){
+        let currentTime=new Date()
+
+        let timeLeft=1000+(endTime-currentTime);
+        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        if (timeLeft < 0) {
+            clearInterval(timer);
+            countdownDisplay.style.color="red"
+            countdownDisplay.innerText="TIME IS UP"
+        }else{
+            countdownDisplay.style.color="black"
+            countdownDisplay.innerText=(hours <10 ? ("0"+hours):hours)+"H:"+(minutes <10 ? ("0"+minutes):minutes)+"M:"+(seconds <10 ? ("0"+seconds):seconds)+"S"
+        }
+    },1000)
+})
+
 document.getElementById('setSession').addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
     let newSessionHour=hourInput.value;
@@ -74,6 +112,8 @@ document.getElementById('setSession').addEventListener('click',function(){
     minutesInput.value=""
     secondsInput.value=""
 })
+
+/*FUNCTION FOR TITLE RESPONSIVENESS*/
 let titleWidth=title.style.width;
 document.addEventListener('scroll',function(){
     if(window.scrollY>30){
@@ -83,9 +123,13 @@ document.addEventListener('scroll',function(){
         title.style.width=titleWidth
     }
 })
+
+/*FUNCTION FOR DISPLAYING OUTPUT IN A NEW SCREEN*/
 displayBtn.addEventListener('click',function(){
     window.open()
 })
+
+/*FUNCTION FOR SAVING NOTES ITEM*/
 saveNotesBtn.addEventListener('click',function(){
     localStorage.setItem('note',notes.value)
 })
