@@ -67,6 +67,7 @@ let countDownBoolean;
 let timer;
 /*START TIMER FUNCTION*/
 start.addEventListener('click',function(){
+    window.alert("TIMER STARTED")
     countDownBoolean=true;
     let startTime=new Date()
     /*GETTING THE HOUR, MINUTES AND SECOND AT THE TIME START IS CLICKED*/
@@ -110,11 +111,13 @@ start.addEventListener('click',function(){
 })
 /*PAUSE TIMER FUNCTION*/
 pause.addEventListener('click',function(){
+    window.alert("TIMER PAUSED")
     countDownBoolean=false;
     clearInterval(timer)
 })
 /*RESET TIMER FUNCTION*/
 reset.addEventListener('click',function(){
+    window.alert("TIMER RESET")
     clearInterval(timer)
     sessionNameDisplay.innerText=""
     countdownDisplay.innerText="00H:00M:00S"
@@ -135,6 +138,7 @@ setSession.addEventListener('click',function(){
     hourInput.value=""
     minutesInput.value=""
     secondsInput.value=""
+    window.alert("SESSION ADDED")
 })
 
 /*FUNCTION FOR TITLE RESPONSIVENESS*/
@@ -155,6 +159,7 @@ displayBtn.addEventListener('click',function(){
 
 /*FUNCTION FOR SAVING NOTES ITEM*/
 saveNotesBtn.addEventListener('click',function(){
+    window.alert("NOTES SAVED")
     localStorage.setItem('note',notes.value)
 })
 window.onload(

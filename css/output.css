@@ -3,6 +3,7 @@
     width: 100%;
     padding: 5em;
     border-radius: 10px;
+    margin: auto;
 }
 section.output-row{
     flex-direction: column;
@@ -11,6 +12,7 @@ section.output-row{
 #presenterSessionNameDisplay{
     text-align: center;
     font-size: 2em;
+    
 }
 #presenterCountdownDisplay{
     font-size: 3em;
@@ -24,6 +26,6 @@ section.output-row{
         font-size: 1.5em;
     }
     #presenterCountdownDisplay{
-        font-size: 2em;
+        font-size: 1em;
     }
 }
