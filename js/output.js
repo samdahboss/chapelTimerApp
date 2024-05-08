@@ -12,6 +12,6 @@ let timer=setInterval(function(){
     }
     presenterCountDownDisplay.innerText=localStorage.getItem('countDownDisplayContent')
     
-},1000)
+},500)
 
 

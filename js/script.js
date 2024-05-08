@@ -14,8 +14,8 @@ const secondsInput=document.getElementById('seconds')
 const sessionNameDisplay=document.getElementById('sessionNameDisplay')
 const countdownDisplay=document.getElementById('countdownDisplay')
 /*session row*/
-let sessionRow= document.getElementById('sessionRow')
-let sessionCards= document.getElementsByClassName('card')
+const sessionRow= document.getElementById('sessionRow')
+const sessionCards= document.getElementsByClassName('card')
 
 /*control btn*/
  const start=document.getElementById('start')
@@ -74,6 +74,7 @@ start.addEventListener('click',function(){
     countdownDisplay.style.animationName=" "
     countdownDisplay.style.color="black"
     countDownBoolean=true;
+    disableSessionCards()
     let startTime=new Date()
     /*GETTING THE HOUR, MINUTES AND SECOND AT THE TIME START IS CLICKED*/
     let startTimeArray=[startTime.getHours(),
@@ -105,12 +106,15 @@ start.addEventListener('click',function(){
             
             if (timeLeft < 0) {
                 clearInterval(timer);
+                countDownBoolean=false;
+                enableSessionCards()
                 countdownDisplay.style.color="red"
                 countdownDisplay.innerText="TIME IS UP"
                 countdownDisplay.style.animationName="blink"
                 localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
             }else{
                 countdownDisplay.style.animationName=" "
+                countDownBoolean=true;
                 countdownDisplay.innerText=(hours <10 ? ("0"+hours):hours)+"H:"+(minutes <10 ? ("0"+minutes):minutes)+"M:"+(seconds <10 ? ("0"+seconds):seconds)+"S"
                 localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
             }
@@ -125,6 +129,7 @@ pause.addEventListener('click',function(){
     notify("TIMER PAUSED")
     countDownBoolean=false;
     clearInterval(timer)
+    enableSessionCards()
 })
 /*RESET TIMER FUNCTION*/
 reset.addEventListener('click',function(){
@@ -135,6 +140,7 @@ reset.addEventListener('click',function(){
     sessionNameDisplay.innerText=""
     countdownDisplay.innerText="00H:00M:00S"
     localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
+    enableSessionCards()
 })
 setSession.addEventListener('click',function(){
     let newSessionName=sessionNameInput.value;
@@ -148,12 +154,30 @@ setSession.addEventListener('click',function(){
     }else{
         notify('PLEASE ENTER A SESSION NAME')
     }
+    if(countdownDisplay.innerText=="00H:00M:00S"){
+        enableSessionCards()
+    }
+    if(countDownBoolean){
+        disableSessionCards()
+    }
     sessionNameInput.value=""
     hourInput.value=""
     minutesInput.value=""
     secondsInput.value=""
     
 })
+
+/*FUNCTION FOR ENABLING AND DISABLE SESSION CARDS*/
+function enableSessionCards(){
+    for (let index=0;index <sessionCards.length;index++){
+        sessionCards[index].style.pointerEvents="auto"
+    }
+}
+function disableSessionCards(){
+    for (let index=0;index <sessionCards.length;index++){
+        sessionCards[index].style.pointerEvents="none"
+    }
+}
 
 /*FUNCTION FOR NOTIFICATIONS*/
 function notify(message){
