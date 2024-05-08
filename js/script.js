@@ -66,7 +66,7 @@ class sessionCard{
 
 }
 
-/*TIMER CONTROL FUNCTION*/
+/*TIMER CONTROL FUNCTIONS*/
 let countDownBoolean;
 let timer;
 /*START TIMER FUNCTION*/
@@ -178,10 +178,12 @@ function disableSessionCards(){
         sessionCards[index].style.pointerEvents="none"
     }
 }
-
 /*FUNCTION FOR NOTIFICATIONS*/
 function notify(message){
     notification.innerText=message;
+    if(notification.style.visibility=="visible"){
+        notification.style.visibility="hidden"
+    }
     let startSecond=new Date().getSeconds()
     let finalSecond=startSecond+1;
     let displayTime;

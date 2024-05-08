@@ -60,12 +60,13 @@ h1{
 }
 #notification{
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.128);
+    background-color: rgba(0, 0, 0, 0.21);
     width: 100%;
     z-index: 100;
     visibility: hidden;
     border-radius: 10px;
-    margin-top: 5px;
+    left: 0;
+    position: fixed;
 }
 /*HEADER CAROUSEL*/
 section.row{
@@ -237,6 +238,10 @@ section.row.control-table{
     .card{
         width: 100%;
     }
+    #notification{
+        width: 80%;
+        left: calc((20%)/2);
+    }
 }
 
 @media (max-width: 768px){
@@ -262,5 +267,12 @@ section.row.control-table{
     }
     section.row.control-table div{
         width: 100%;
+    }
+    #notification{
+        width: 50%;
+        left: calc((50%)/2);
+        background-color: rgba(159, 140, 140, 0.477);
+        color: rgb(0, 0, 0);
+        top: 100px;
     }
 }
