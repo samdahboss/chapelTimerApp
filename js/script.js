@@ -1,20 +1,21 @@
-let title = document.getElementById('title')
-let displayBtn=document.getElementById('display')
+const title = document.getElementById('title')
+const displayBtn=document.getElementById('display')
 /*notes*/
-let notes =document.getElementById('notes')
-let saveNotesBtn= document.getElementById('saveNotesBtn')
+const notes =document.getElementById('notes')
+const saveNotesBtn= document.getElementById('saveNotesBtn')
 
 /*timer*/
-let sessionNameInput=document.getElementById('sessionName')
-let hourInput=document.getElementById('hour')
-let minutesInput=document.getElementById('minutes')
-let secondsInput=document.getElementById('seconds')
+const sessionNameInput=document.getElementById('sessionName')
+const hourInput=document.getElementById('hour')
+const minutesInput=document.getElementById('minutes')
+const secondsInput=document.getElementById('seconds')
 
 /*timerDisplay*/
-let sessionNameDisplay=document.getElementById('sessionNameDisplay')
-let countdownDisplay=document.getElementById('countdownDisplay')
+const sessionNameDisplay=document.getElementById('sessionNameDisplay')
+const countdownDisplay=document.getElementById('countdownDisplay')
 /*session row*/
 let sessionRow= document.getElementById('sessionRow')
+let sessionCards= document.getElementsByClassName('card')
 
 /*control btn*/
  const start=document.getElementById('start')
@@ -22,6 +23,8 @@ let sessionRow= document.getElementById('sessionRow')
  const reset=document.getElementById('reset')
  const setSession=document.getElementById('setSession')
 
+/*notification*/
+const notification=document.getElementById('notification')
  /*session card object*/
 class sessionCard{
     constructor(sessionName,  noOfHours,noOfMinutes,noOfSeconds){
@@ -53,6 +56,7 @@ class sessionCard{
     displayTime(){
         sessionNameDisplay.innerText=this.sessionName;
         countdownDisplay.style.color="black";
+        countdownDisplay.style.animationName="none"
         countdownDisplay.innerText=(this.noOfHours.length>1?(this.noOfHours):this.noOfHours.length==1?("0"+this.noOfHours):"00")+"H:"
                                    +(this.noOfMinutes.length>1?(this.noOfMinutes):this.noOfMinutes.length==1?("0"+this.noOfMinutes):"00")+"M:"
                                    +(this.noOfSeconds.length>1?(this.noOfSeconds):this.noOfSeconds.length==1?("0"+this.noOfSeconds):"00")+"S"
@@ -67,7 +71,8 @@ let countDownBoolean;
 let timer;
 /*START TIMER FUNCTION*/
 start.addEventListener('click',function(){
-    window.alert("TIMER STARTED")
+    countdownDisplay.style.animationName=" "
+    countdownDisplay.style.color="black"
     countDownBoolean=true;
     let startTime=new Date()
     /*GETTING THE HOUR, MINUTES AND SECOND AT THE TIME START IS CLICKED*/
@@ -89,35 +94,43 @@ start.addEventListener('click',function(){
     endTime.setSeconds(endTimeArray[2])
                     
     
-    if(countDownBoolean){
-    timer=setInterval(function(){
-        let currentTime=new Date()
+    if(countDownBoolean && (countDownTime[0]>0||countDownTime[1]>0||countDownTime[2]>0)){
+        timer=setInterval(function(){
+            let currentTime=new Date()
 
-        let timeLeft=1000+(endTime-currentTime);
-        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        
-        if (timeLeft < 0) {
-            clearInterval(timer);
-            countdownDisplay.style.color="red"
-            countdownDisplay.innerText="TIME IS UP"
-            localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
-        }else{
-            countdownDisplay.innerText=(hours <10 ? ("0"+hours):hours)+"H:"+(minutes <10 ? ("0"+minutes):minutes)+"M:"+(seconds <10 ? ("0"+seconds):seconds)+"S"
-            localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
-        }
-    },1000)}
+            let timeLeft=1000+(endTime-currentTime);
+            let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                countdownDisplay.style.color="red"
+                countdownDisplay.innerText="TIME IS UP"
+                countdownDisplay.style.animationName="blink"
+                localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
+            }else{
+                countdownDisplay.style.animationName=" "
+                countdownDisplay.innerText=(hours <10 ? ("0"+hours):hours)+"H:"+(minutes <10 ? ("0"+minutes):minutes)+"M:"+(seconds <10 ? ("0"+seconds):seconds)+"S"
+                localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
+            }
+        },1000)
+        notify("TIMER STARTED")
+    }else{ 
+        notify("SELECT A SESSION")
+    }
 })
 /*PAUSE TIMER FUNCTION*/
 pause.addEventListener('click',function(){
-    window.alert("TIMER PAUSED")
+    notify("TIMER PAUSED")
     countDownBoolean=false;
     clearInterval(timer)
 })
 /*RESET TIMER FUNCTION*/
 reset.addEventListener('click',function(){
-    window.alert("TIMER RESET")
+    notify("TIMER RESET")
+    countdownDisplay.style.animationName="none"
+    countdownDisplay.style.color="black"
     clearInterval(timer)
     sessionNameDisplay.innerText=""
     countdownDisplay.innerText="00H:00M:00S"
@@ -130,17 +143,35 @@ setSession.addEventListener('click',function(){
     let newSessionSeconds=secondsInput.value;
     if(newSessionName){
         let newSession=new sessionCard(newSessionName,newSessionHour,newSessionMinutes,newSessionSeconds);
+        notify("SESSION ADDED")
         newSession.draw()
     }else{
-        window.alert('Please enter a Session Name')
+        notify('PLEASE ENTER A SESSION NAME')
     }
     sessionNameInput.value=""
     hourInput.value=""
     minutesInput.value=""
     secondsInput.value=""
-    window.alert("SESSION ADDED")
+    
 })
 
+/*FUNCTION FOR NOTIFICATIONS*/
+function notify(message){
+    notification.innerText=message;
+    let startSecond=new Date().getSeconds()
+    let finalSecond=startSecond+1;
+    let displayTime;
+    let secInterval=setInterval(function(){
+        let currentSecond=new Date().getSeconds()
+        displayTime=finalSecond-currentSecond
+        notification.style.visibility="visible"
+        if(displayTime<0){
+            notification.style.visibility="hidden"
+            clearInterval(secInterval)
+        }
+    },1000)
+    
+}
 /*FUNCTION FOR TITLE RESPONSIVENESS*/
 let titleWidth=title.style.width;
 document.addEventListener('scroll',function(){
@@ -159,7 +190,7 @@ displayBtn.addEventListener('click',function(){
 
 /*FUNCTION FOR SAVING NOTES ITEM*/
 saveNotesBtn.addEventListener('click',function(){
-    window.alert("NOTES SAVED")
+    notify("NOTES SAVED")
     localStorage.setItem('note',notes.value)
 })
 window.onload(

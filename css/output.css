@@ -16,6 +16,9 @@ section.output-row{
 }
 #presenterCountdownDisplay{
     font-size: 3em;
+    animation:none 1s ease-out 0.5s infinite;
+    transition: 0s;
+    transform: none;
 }
 
 @media(max-width: 992px){
@@ -27,5 +30,23 @@ section.output-row{
     }
     #presenterCountdownDisplay{
         font-size: 1em;
+    }
+}
+
+@keyframes presenterBlink{
+    0%{
+        color: red;
+    }
+    20%{
+        color: red;
+    }
+    40%{
+        color: red;
+    }
+    60%{
+        color: red;
+    }
+    100%{
+        color: black;
     }
 }
