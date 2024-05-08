@@ -140,7 +140,7 @@ reset.addEventListener('click',function(){
     sessionNameDisplay.innerText=""
     countdownDisplay.innerText="00H:00M:00S"
     localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
-    localStorage.setItem("sessionNameContent"," ")
+    localStorage.setItem("sessionNameContent",sessionNameDisplay.innerText)
     enableSessionCards()
 })
 setSession.addEventListener('click',function(){
