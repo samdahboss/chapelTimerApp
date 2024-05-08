@@ -137,7 +137,7 @@ reset.addEventListener('click',function(){
     countdownDisplay.style.animationName="none"
     countdownDisplay.style.color="black"
     clearInterval(timer)
-    sessionNameDisplay.innerText=""
+    sessionNameDisplay.innerText=" "
     countdownDisplay.innerText="00H:00M:00S"
     localStorage.setItem("countDownDisplayContent", countdownDisplay.innerText)
     localStorage.setItem("sessionNameContent",sessionNameDisplay.innerText)
