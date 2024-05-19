@@ -1,0 +1,17 @@
+1. To set the time for a particular session in the worship service:
+	- Fill in the details of the session in the time control panel.
+	- Click the set session button.
+	- A card with your session details would appear above the control panel.
+	- Repeat this process to set as many sessions as you desire.
+2. To set and display the coutdown:
+	- Click on a session card, to set the time frame and name of that session.
+	- Click the display button at the top to open the output in a New Tab.
+	- After setting the time frame, click the start button to start the countdown.
+3. To save your order of programme:
+	- Go to the notes box and input your order of programme or any desired tip
+	-  Click the save notes button to save your input across reload sessions.
+
+NOTE: To avoid confusion during the service, the operator can't set a new countdown while the last session
+              countdown is running, to set a new time frame: pause or reset the timer then click on the session card
+              you desire to set a new time frame for the countdown.
+              

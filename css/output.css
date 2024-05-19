@@ -4,7 +4,8 @@
     padding: 5em;
     border-radius: 10px;
     margin: auto;
-}
+    background-color: #6af2024a;
+ }
 section.output-row{
     flex-direction: column;
     padding-top: 10%;
@@ -12,7 +13,7 @@ section.output-row{
 #presenterSessionNameDisplay{
     text-align: center;
     font-size: 2em;
-    
+    text-transform: uppercase;
 }
 #presenterCountdownDisplay{
     font-size: 3em;
@@ -21,15 +22,57 @@ section.output-row{
     transform: none;
 }
 
-@media(max-width: 992px){
+@media(max-width:560px){
+    #title h1{
+        font-size: 3em;
+    }
+    *{
+        font-size: 8px;
+    }
     section.output-row{
-        padding-top: 20%;
+        padding-top: 25%;
     }
-    #presenterSessionNameDisplay{
-        font-size: 1.5em;
+    #presenterTimerDisplay{
+        padding: 5em 0em;
     }
-    #presenterCountdownDisplay{
-        font-size: 1em;
+}
+@media (min-width: 562px)and(max-width:768px){
+    *{
+        font-size: 13px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1439px){
+    section.output-row{
+        padding-top: 15%;
+    }
+    #presenterTimerDisplay{
+        padding: 5em 2em;
+    }
+    *{
+        font-size: 16px;
+    }
+}
+@media(min-width: 1440px) and (max-width: 2357px){
+    section.output-row{
+        padding-top: 10%;
+    }
+    
+    #presenterTimerDisplay{
+        padding: 5em 0em;
+    }
+    *{
+        font-size: 25px;
+    }
+    #title{
+        width: 60%;
+    }
+}
+@media(max-width: 2860px) and (min-width: 2358px){
+    #presenterTimerDisplay{
+        padding: 5em 0em;
+    }
+    *{
+        font-size: 40px;
     }
 }
 
