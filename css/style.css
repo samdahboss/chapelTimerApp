@@ -243,7 +243,7 @@ section.row.control-table{
 
 @media (max-width: 768px){
     #title{
-        font-size: 0.8em;
+        font-size: 0.6em;
     }
     #countdownDisplay,#sessionNameDisplay{
         display: block;
