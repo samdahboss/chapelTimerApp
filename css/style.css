@@ -242,8 +242,8 @@ section.row.control-table{
 }
 
 @media (max-width: 768px){
-    #title{
-        font-size: 0.6em;
+    h1{
+        font-size: 1.5em;
     }
     #countdownDisplay,#sessionNameDisplay{
         display: block;
