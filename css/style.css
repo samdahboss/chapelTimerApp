@@ -243,10 +243,16 @@ section.row.control-table{
 
 @media (max-width: 768px){
     h1{
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     #title img{
         width: 50px;
+    }
+    #setTimeTable label{
+        font-size: 1.2em;
+    }
+    #display{
+        margin-top: 50px;
     }
     #countdownDisplay,#sessionNameDisplay{
         display: block;
